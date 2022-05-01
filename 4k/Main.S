@@ -16,6 +16,19 @@ DEMOLENGTH	=	11776
 
 	include	4k:System.S
 
+; Main 4k system control macro
+;
+; First argument is the base name for temporary files.
+; Second argument is the build mode:
+;  0: Test. Use when testing the intro inside AsmPro. Assemble and run.
+;  1: Build. Converts the code to an internal instruction format (wordcode) and
+;     writes temporary files containing the converted code. Assemble and run.
+;  2: Deploy. Ignores the source code and just includes the converted wordcode
+;     to produce an executable. Assemble and write object.
+;     Sometimes fails with an "Illegal path" error message. Just assemble again.
+;
+; The resulting executable must have its three fast memory sections merged to
+; work properly. This can be done with the --hunkmerge option to Shrinkler.
 	BEGIN4k	ram:wordcode,0
 
 	DATA
