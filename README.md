@@ -8,3 +8,7 @@ This repository contains the source code and data files for the Amiga 4k intro [
 2. Load [`4k:Main.S`](4k/Main.S) into AsmPro.
 3. Follow the instructions in that file to produce an executable.
 4. Compress the executable using [Shrinkler](https://github.com/askeksa/Shrinkler) `--hunkmerge --mini` (or another cruncher that supports hunk merging).
+
+### The bytecode interpreter ###
+
+All effects in the intro are constructed via a bytecode script, contained in the two data files [`tree.dat`](4k/tree.dat) and [`constantpool.dat`](4k/constantpool.dat). The bytecodes are interpreted by the intro code at runtime, using note data from the music to synchronize the effects to the music. The [`C`](C) directory contains a C port of the interpreter (and music data), which is likely easier to read (for understanding the bytecode semantics) than the assembly code.
